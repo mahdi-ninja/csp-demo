@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>XSS Demo</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-theme.min.css">
+    <script src="/jquery-2.2.4.min.js"></script>
+    <script src="/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1>Welcome</h1>
+      <p>Don't forget to comment!</p> 
+    </div>
+
+    <table class="table table-striped">
+      <tr>
+          <th class="col-md-2">Name</th>
+          <th class="col-md-8">Comment</th>
+          <th class="col-md-1">Time</th>
+      </tr>
+      {{#each this.comments}}
+      <tr>
+          <td>{{{this.name}}}</td>
+          <td>{{{this.comment}}}</td>
+          <td>{{{this.time}}}</td>
+      </tr>
+      {{else}}
+      <tr>
+          <td colspan="3" class="text-center text-muted">Nothing yet...</td>
+      </tr>
+      {{/each}}
+    </table>
+
+    <form method="POST" action="/add">
+      <div class="form-group">
+        <label>Name</label>
+        <input name="name" type="text" class="form-control" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label>Comment</label>
+        <textarea name="comment" class="form-control" rows="3" placeholder="Enter your comment" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+  </div>
+</body>
+</html>
