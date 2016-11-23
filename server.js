@@ -14,11 +14,8 @@ var comments = [];
 var reports = []; 
 
 app.get('/', (req, res) => {
-  res.header('Content-Security-Policy',
+  res.header('Content-Security-Policy-Report-Only',
     `default-src 'self'; ` + 
-    `script-src 'self' 'sha256-sVC5W86Po3UWU/eNV3Aavn0GcDA/HSloLRgb7iwNe6Y=' https://code.jquery.com https://maxcdn.bootstrapcdn.com; ` + 
-    `style-src https://maxcdn.bootstrapcdn.com; ` + 
-    `font-src https://maxcdn.bootstrapcdn.com; ` +
     `report-uri /reportcsp`);
   res.render('index', { comments: comments });
 });
