@@ -35,6 +35,7 @@ app.get('/reset', (req, res) => {
 
 app.post('/reportcsp', (req, res) => {
   reports.unshift(req.body['csp-report']);
+  res.end();
 });
 
 app.get('/reports', (req, res) => {
