@@ -13,7 +13,10 @@ app.use(express.static('static'));
 var comments = [];
 
 app.get('/', (req, res) => {
-  res.header('Content-Security-Policy', "default-src 'self'");
+  res.header('Content-Security-Policy',
+    "default-src 'self'; " + 
+    "script-src https://code.jquery.com https://maxcdn.bootstrapcdn.com; " + 
+    "style-src https://maxcdn.bootstrapcdn.com");
   res.render('index', { comments: comments });
 });
 
