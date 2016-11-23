@@ -13,12 +13,13 @@ app.use(express.static('static'));
 var comments = [];
 
 app.get('/', (req, res) => {
+  var nonce = Math.random().toString(36).substring(2);
   res.header('Content-Security-Policy',
-    "default-src 'self'; " + 
-    "script-src 'self' 'unsafe-inline' https://code.jquery.com https://maxcdn.bootstrapcdn.com; " + 
-    "style-src https://maxcdn.bootstrapcdn.com; " + 
-    "font-src https://maxcdn.bootstrapcdn.com");
-  res.render('index', { comments: comments });
+    `default-src 'self'; ` + 
+    `script-src 'self' 'nonce-${nonce}' https://code.jquery.com https://maxcdn.bootstrapcdn.com; ` + 
+    `style-src https://maxcdn.bootstrapcdn.com; ` + 
+    `font-src https://maxcdn.bootstrapcdn.com`);
+  res.render('index', { comments: comments, nonce: nonce });
 });
 
 app.post('/add', (req, res) => {
