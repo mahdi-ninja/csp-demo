@@ -13,6 +13,7 @@ app.use(express.static('static'));
 var comments = [];
 
 app.get('/', (req, res) => {
+  res.header('Content-Security-Policy', "default-src 'none'");
   res.render('index', { comments: comments });
 });
 
